@@ -1,0 +1,14 @@
+{
+  "name": "BTWEBCLIENT",
+  "homepage": "www.BTWEBCLIENT.com",
+  "authors": [
+    "santosh"
+  ],
+  "description": "This is simple project",
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "angular": "^1.6.5"
+  }
+}

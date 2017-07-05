@@ -1,0 +1,25 @@
+<div>
+
+  <div class="panel panel-default" style="width:500px;margin-left:370px">
+    <div class="panel-heading">LogIn</div>
+    <div class="panel-body">
+
+      <div class="form-group">
+        <input type="test" class="form-control" id="email" name="user" ng-model="username" placeholder="email address">
+      </div>
+      <div class="form-group">
+       
+        <input type="password" class="form-control" id="pwd" name="pass" ng-model="password" placeholder="Password">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+      <button class="btn btn-primary" type="button" ng-click="login(username,password)">Login</button>
+    </div>
+    <i class="fa fa-spinner fa-spin fa-2x fa-fw" aria-hidden="true" ng-show="isShow"></i>
+  </div>
+
+
+
+
+</div>
