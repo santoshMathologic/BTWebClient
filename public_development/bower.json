@@ -1,14 +1,33 @@
 {
-  "name": "BTWEBCLIENT",
-  "homepage": "www.BTWEBCLIENT.com",
+  "name": "BTWebClient",
+  "homepage": "www.webClient.com",
   "authors": [
     "santosh"
   ],
-  "description": "This is simple project",
-  "main": "app.js",
+  "description": "This is WEBCLIENT PROJECT",
+  "main": "app.config.js",
   "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "angular": "^1.6.5"
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.6.4",
+    "angular-base64": "^2.0.5",
+    "angular-bootstrap": "^2.5.0",
+    "angular-cookies": "^1.6.4",
+    "angular-jwt": "^0.1.9",
+    "angular-messages": "^1.6.4",
+    "angular-resource": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-ui-router": "^1.0.4",
+    "angular": "^1.6.4",
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.7.0",
+    "oclazyload": "^1.1.0"
   }
 }

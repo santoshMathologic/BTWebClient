@@ -23,6 +23,7 @@ var fs = require('fs'),
     imagemin = require('gulp-imagemin'),
     useref = require('gulp-useref'),
     clean = require('gulp-clean'),
+    livereload = require('gulp-livereload'),
     //// jshint = require('gulp-jshint'),
     //// stylish = require('jshint-stylish'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -35,16 +36,14 @@ var fs = require('fs'),
 var sourceDir = './public_development';
 var destinationDir = './public';
 
-var inputPath = 'public_development';  // eg.: src  or  src/html
-var outputPath = 'public';  // eg.: dist  or public/html
-var inputActPath = inputPath + "/";
-var outputActPath = outputPath + "/";
+
 
 
 if (!fs.existsSync(sourceDir)) {
     fs.mkdirSync(sourceDir);
 }
 
+livereload({ start: true })
 
 gulp.task('styles', function () {
 
@@ -120,13 +119,15 @@ gulp.task('watch', ['browser-sync', 'styles', 'ng', 'js'], function () {
     gulp.watch('public_development/**/*.html', ['views']);
     gulp.watch('public_development/js/lib/*.js', ['jquery-concat']);
     gulp.watch('public_development/**/*', browser_Sync.reload);
+    livereload.listen();
 
 });
 
 gulp.task('ng', function () {
     console.log("ng is updating");
     return gulp.src('public_development/ng/**/*')
-        .pipe(gulp.dest('public/ng'));
+        .pipe(gulp.dest('public/ng'))
+        .pipe(livereload());
 });
 
 /*
@@ -147,13 +148,20 @@ gulp.task('jquery-concat', function() {
 
 
 
-gulp.task('clean:dist', function () {
-    return del.sync('public/');
+gulp.task('clean:destination', function () {
+    return del.sync([
+    'public/css',
+    'public/images',
+    'public/js',
+    'public/ng',
+    '!public/bower.json',
+    '!public/bower_component'
+    ]);
 });
 
 gulp.task('build', function (callback) {
     console.log('Building project...');
-    runSequence('clean:dist', ['styles', 'js', 'ng','images','jquery-concat'],
+    runSequence('clean:destination', ['styles', 'js', 'ng','images','jquery-concat'],
         callback
     );
 
