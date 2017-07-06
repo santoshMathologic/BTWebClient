@@ -1,9 +1,4 @@
-/**
- *         GULP 
- *          @author santosh
- *          @since 2017
- * 
- */
+
 
 
 ' use strict';
@@ -43,7 +38,8 @@ if (!fs.existsSync(sourceDir)) {
     fs.mkdirSync(sourceDir);
 }
 
-livereload({ start: true })
+livereload({ start: true });
+
 
 gulp.task('styles', function () {
 
@@ -111,6 +107,14 @@ gulp.task('browser-sync', function () {
     });
 });
 
+gulp.task('LiveServe', function(done) {
+  var express = require('express');
+  var app = express();
+  app.use(express.static(__dirname + '/public'));
+  app.listen(5000, function () {
+     done();
+  });
+});
 
 gulp.task('watch', ['browser-sync', 'styles', 'ng', 'js'], function () {
     gulp.watch('public_development/scss/**/*.scss', ['styles']);
@@ -174,7 +178,7 @@ gulp.task('clean-public', function () {
 });
 
 gulp.task('default', function (callback) {
-    runSequence(['styles', 'js', 'ng', 'watch', 'browser-sync','images','jquery-concat'],
+    runSequence(['styles', 'js', 'ng', 'watch', 'browser-sync','images','jquery-concat','LiveServe'],
         callback
     );
 });

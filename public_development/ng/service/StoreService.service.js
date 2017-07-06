@@ -10,6 +10,7 @@ app.service("storageService",function($window){
 
   var windowDecodeToken = {}; 
         return {
+          
             setLocalStorage: function (decodedToken){
               $window.localStorage.username = decodedToken.username;
               $window.sessionStorage.token = decodedToken.token;

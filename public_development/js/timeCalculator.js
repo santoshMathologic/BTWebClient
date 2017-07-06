@@ -2,6 +2,12 @@
 var app = angular.module('LocoLinkWebClient');
 app.service('TimeCal', function(){
     
+
+   
+   /**
+    * @param  {} dateTimeObj
+    * @param  {} target
+    */
    var convertDateTimeObjToNumber = function(dateTimeObj, target) {
     if (dateTimeObj === null || typeof dateTimeObj !== 'object') {
         throw new Error("Not valid dateTimeObject passed to convertDateTimeObj()");
