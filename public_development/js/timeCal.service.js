@@ -2,12 +2,6 @@
  * @namespace BTApp
  */
 var app = angular.module("BTApp");
-
-
-var objeTime = {
-    time: "12:30:00",
-    day: 2
-};
 app.service("timeCalculatorService", function () {
     /**
     * @function convertDateTimeObjToNumber
@@ -20,35 +14,45 @@ app.service("timeCalculatorService", function () {
     * @version 0.0.1
     */
     var convertDateTimeObjToNumber = function (dateTimeObj, target) {
-        if (dateTimeObj === null || dateTimeObj === undefined || typeof dateTimeObj === 'object') {
+        if (dateTimeObj === null || dateTimeObj === undefined || typeof dateTimeObj !== 'object') {
             throw new Error("Not valid dateTimeObject passed to method()");
         }
         if (dateTimeObj.day === null || dateTimeObj.time === null) {
             throw new Error("Not valid dateTimeObject passed to convertDateTimeObj()");
         }
 
-         if(target===null){
-             target = "";
-         }
-         target = target.toLowerCase();
+        if (target === null) {
+            target = "";
+        }
+        target = target.toLowerCase();
 
-         var timeParts = dateTimeObj.time.split(":");
-         var hrs = parseInt(timeParts[0]);
-         var min = parseInt(timeParts[1]);
+        var timeParts = dateTimeObj.time.split(":");
+        var hrs = parseInt(timeParts[0]);
+        var min = parseInt(timeParts[1]);
 
-            if((hrs>23 || hrs<0)&&(min>59 || min<0)){
-                throw new Error("Not valid dateTimeObj.time passed to convertDateTimeObj()");
-            }
+        if ((hrs > 23 || hrs < 0) && (min > 59 || min < 0)) {
+            throw new Error("Not valid dateTimeObj.time passed to convertDateTimeObj()");
+        }
         var mins = (dateTimeObj.day * 1440) + (hrs * 60) + (min);
         var result = null;
 
 
-        switch(target){
-              case 'mins': case 'min': case 'minutes': case 'minute':
+        switch (target) {
+            case 'mins': case 'min': case 'minutes': case 'minute':
                 result = mins;
-              break;
+                break;
+            case 'hrs': case 'hr': case 'hours': case 'hour':
+                result = (mins / 60);
+                break;
+            case 'days': case 'day':
+                result = (mins / 1440);
+                break;
+            default:
+                result = mins;
+                break;
         }
 
+        return result;
 
     };
 
