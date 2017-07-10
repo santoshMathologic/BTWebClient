@@ -40,6 +40,15 @@ app.service("timeCalculatorService", function () {
                 throw new Error("Not valid dateTimeObj.time passed to convertDateTimeObj()");
             }
         var mins = (dateTimeObj.day * 1440) + (hrs * 60) + (min);
+        var result = null;
+
+
+        switch(target){
+              case 'mins': case 'min': case 'minutes': case 'minute':
+                result = mins;
+              break;
+        }
+
 
     };
 

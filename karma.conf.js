@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Mon Jul 10 2017 17:49:46 GMT+0530 (India Standard Time)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,6 +15,24 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+
+
+      './public_development/bower_components/angular/angular.js',                             // angular
+      './public_development/bower_components/angular-base64/angular-base64.min.js',                             // angular
+      './public_development/bower_components/angular-jwt/dist/angular-jwt.min.js',   
+      "./public_development/bower_components/angular-route/angular-route.min.js",                          // angular
+      './public_development/bower_components/angular-ui-router/release/angular-ui-router.js', // ui-router
+      './public_development/bower_components/angular-mocks/angular-mocks.js',
+      "./public_development/bower_components/angular-cookies/angular-cookies.min.js",
+      "./public_development/bower_components/oclazyload/dist/oclazyload.min.js",
+      "./public_development/bower_components/angular-animate/angular-animate.min.js",
+      "./public_development/bower_components/angular-messages/angular-messages.min.js",
+
+      './public_development/ng/app.config.js',                                                  // our angular app
+      './public_development/js/timeCal.service.js',                                 // our Users factory
+      './public_development/js/timeCal.service.spec.js',
+
+
     ],
 
 
@@ -64,5 +82,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  });
+};
