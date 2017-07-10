@@ -1,21 +1,16 @@
 
 var app = angular.module('LocoLinkWebClient');
-app.service('TimeCal', function(){
-    
-
-   
-   /**
-    * @param  {} dateTimeObj
-    * @param  {} target
-    */
+app.service('TimeCalculator', function(){
+  
    var convertDateTimeObjToNumber = function(dateTimeObj, target) {
+    
     if (dateTimeObj === null || typeof dateTimeObj !== 'object') {
         throw new Error("Not valid dateTimeObject passed to convertDateTimeObj()");
     }
     if (dateTimeObj.day === null || dateTimeObj.time === null) {
         throw new Error("Not valid dateTimeObject passed to convertDateTimeObj()");
     }
-    if (target == null) {
+    if (target === null) {
         target = "";
     }
     target = target.toLowerCase();
@@ -27,9 +22,7 @@ app.service('TimeCal', function(){
         throw new Error("Not valid dateTimeObj.time passed to convertDateTimeObj()");
     }
 
-    var mins = (dateTimeObj.day * 1440)
-        + (timeParts[0] * 60)
-        + (timeParts[1]);
+    var mins = (dateTimeObj.day * 1440) + (timeParts[0] * 60) + (timeParts[1]);
 
     var result = null;
     switch (target) {
@@ -47,15 +40,15 @@ app.service('TimeCal', function(){
             break;
     }
     return result;
-}
+};
 
 var convertNumberToDateTimeObj = function(number, type) {
-    if (type == null) {
+    if (type === null) {
         type = "";
     }
     type = type.toLowerCase();
 
-    if (number == null) {
+    if (number === null) {
         throw new Error("Number not sent to convertNumberToDateTimeObj()");
     }
     var day = -1;
@@ -111,13 +104,13 @@ var convertNumberToDateTimeObj = function(number, type) {
         result.time += ':' + ((mins < 10) ? '0' : '') + mins.toString();
     }
     return result;
-}
+};
 
 var addDateTimeObj = function(dateTimeObj, number, operation, type) {
-    if (type == null) {
+    if (type === null) {
         type = "";
     }
-    if (operation == null) {
+    if (operation === null) {
         operation = "+";
     }
     type = type.toLowerCase();
@@ -129,46 +122,34 @@ var addDateTimeObj = function(dateTimeObj, number, operation, type) {
     var timeNo = null;
     var resultNo = null;
     var resultObj = null;
+    var q;
     timeNo = convertDateTimeObjToNumber(dateTimeObj, "min");
     switch (operation) {
         case '+': case 'plus': case 'add': case 'addition':
             resultNo = timeNo + number;
-            // switch (type) {
-            //     case 'mins': case 'min': case 'minutes': case 'minute':
-            //         resultNo = (resultNo % 10080);
-            //         break;
-            //     case 'hrs': case 'hr': case 'hours': case 'hour':
-            //         resultNo = (resultNo % 168);
-            //         break;
-            //     case 'days': case 'day':
-            //         resultNo = (resultNo % 7);
-            //         break;
-            //     default:
-            //         resultNo = (resultNo % 10080);
-            //         break;
-            // }
             break;
+
         case '-': case 'minus': case 'sub': case 'subtract': case 'subtraction':
             resultNo = timeNo - number;
             if (resultNo < 0) {
                 switch (type) {
                     case 'mins': case 'min': case 'minutes': case 'minute':
-                        var q = Math.floor(Math.abs(resultNo) / 10080);
+                        q = Math.floor(Math.abs(resultNo) / 10080);
                         q += 1;
                         resultNo = ((10080 * q) + resultNo);
                         break;
                     case 'hrs': case 'hr': case 'hours': case 'hour':
-                        var q = Math.floor(Math.abs(resultNo) / 10080);
+                        q = Math.floor(Math.abs(resultNo) / 10080);
                         q += 1;
                         resultNo = ((168 * q) + resultNo);
                         break;
                     case 'days': case 'day':
-                        var q = Math.floor(Math.abs(resultNo) / 10080);
+                        q = Math.floor(Math.abs(resultNo) / 10080);
                         q += 1;
                         resultNo = ((7 * q) + resultNo);
                         break;
                     default:
-                        var q = Math.floor(Math.abs(resultNo) / 10080);
+                        q = Math.floor(Math.abs(resultNo) / 10080);
                         q += 1;
                         resultNo = ((10080 * q) + resultNo);
                         break;
@@ -181,7 +162,7 @@ var addDateTimeObj = function(dateTimeObj, number, operation, type) {
     }
     resultObj = convertNumberToDateTimeObj(resultNo, "min");
     return resultObj;
-}
+};
 
 var diffDateTimeObj = function(fromObj, toObj, unit) {
     if (fromObj === null || typeof fromObj !== 'object') {
@@ -206,26 +187,27 @@ var diffDateTimeObj = function(fromObj, toObj, unit) {
     var to = convertDateTimeObjToNumber(toObj, unit);
     var diff = to - from;
     var positive = true;
+    var q;
     if (diff < 0) {
         positive = false;
         switch (unit) {
             case 'mins': case 'min': case 'minutes': case 'minute':
-                var q = Math.floor(Math.abs(diff) / 10080);
+                q = Math.floor(Math.abs(diff) / 10080);
                 q += 1;
                 diff = ((10080 * q) + diff);
                 break;
             case 'hrs': case 'hr': case 'hours': case 'hour':
-                var q = Math.floor(Math.abs(diff) / 10080);
+                q = Math.floor(Math.abs(diff) / 10080);
                 q += 1;
                 diff = ((168 * q) + diff);
                 break;
             case 'days': case 'day':
-                var q = Math.floor(Math.abs(diff) / 10080);
+                q = Math.floor(Math.abs(diff) / 10080);
                 q += 1;
                 diff = ((7 * q) + diff);
                 break;
             default:
-                var q = Math.floor(Math.abs(diff) / 10080);
+                q = Math.floor(Math.abs(diff) / 10080);
                 q += 1;
                 diff = ((10080 * q) + diff);
                 break;
@@ -234,16 +216,14 @@ var diffDateTimeObj = function(fromObj, toObj, unit) {
     var result = convertNumberToDateTimeObj(diff,unit);
     result.positive = positive;
     return result;
-}
+};
 
 var timeCal = {
     convertDateTimeObjToNumber: convertDateTimeObjToNumber,
     convertNumberToDateTimeObj: convertNumberToDateTimeObj,
     addDateTimeObj: addDateTimeObj,
     diffDateTimeObj: diffDateTimeObj
-} 
-   
-   
+}; 
    return timeCal; 
     
 });

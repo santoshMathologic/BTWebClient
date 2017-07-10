@@ -77,8 +77,9 @@ var appConfig  = (function () {
                                 files: [
                                     'ng/directive/home/home.directive.js',
                                     'ng/controller/home.controller.js',
-                                     'ng/factory/authFactory.factory.js'
-                                   // 'ng/service/StoreService.service.js'
+                                    'ng/factory/authFactory.factory.js',
+                                    'js/timeCal.service.min.js'
+                                        // 'ng/service/StoreService.service.js'
                                    
                                 ]
                             });

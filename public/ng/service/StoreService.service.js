@@ -3,13 +3,17 @@
 (function(){
 
 var app = angular.module("BTApp");
-
+/**
+ * @param  {} "storageService"
+ * @param  {} function($window
+ */
 app.service("storageService",function($window){
 
   console.log("at store Service ");
 
   var windowDecodeToken = {}; 
         return {
+          
             setLocalStorage: function (decodedToken){
               $window.localStorage.username = decodedToken.username;
               $window.sessionStorage.token = decodedToken.token;
