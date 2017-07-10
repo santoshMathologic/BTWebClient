@@ -10,9 +10,9 @@
 
 
 		var isLoggedIn = authFactory.checkLoggedIn();
-		$scope.isShow  = false;
+		$scope.isShow = false;
 		$scope.login = function (username, password) {
-	    $scope.isShow  = true;
+			$scope.isShow = true;
 			authFactory.dologin(username, password).then(function successCallback(successResponse) {
 
 				authFactory.isLogged = true;
@@ -21,7 +21,6 @@
 				$window.sessionStorage.token = successResponse.data.tokenKey.token;
 				$window.sessionStorage.username = successResponse.data.tokenKey.username;
 				$window.sessionStorage.userRole = successResponse.data.tokenKey.role;
-
 				$window.localStorage.token = successResponse.data.tokenKey.token;
 				$window.localStorage.username = successResponse.data.tokenKey.username;
 				$window.localStorage.userRole = successResponse.data.tokenKey.role;
@@ -33,10 +32,10 @@
 					$scope.isShow = false;
 				}, 3000);
 
-			
-			
 
-             }, function errorCallback(errorResponse) {
+
+
+			}, function errorCallback(errorResponse) {
 
 				console.log("errorResponse" + errorResponse);
 				alert("User not authorized.");
@@ -46,7 +45,7 @@
 
 
 
-};
+		};
 
 	});
 
