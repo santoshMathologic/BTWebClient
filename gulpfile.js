@@ -12,6 +12,7 @@ var fs = require('fs'),
     runSequence = require('run-sequence'),
     minify = require('gulp-minify'),
     del = require('del'),
+    karma = require('gulp-karma'),
     pug = require('gulp-pug'),
     gulpif = require('gulp-if'),
     cache = require('gulp-cache'),
@@ -25,7 +26,7 @@ var fs = require('fs'),
     minifyCss = require('gulp-clean-css'),
     browser_Sync = require('browser-sync').create(); // create a browser sync instance.
     cssnano = require('gulp-cssnano');
-
+    var karmaServer = require('karma').Server;
 
 
 var sourceDir = './public_development';
@@ -65,10 +66,8 @@ gulp.task('styles', function () {
 
 gulp.task('images', function () {
     return gulp.src('public_development/images/**/*.+(png|jpg|jpeg|gif|svg)')
-        .pipe(cache(imagemin({
-            interlaced: true
-        })))
-        .pipe(gulp.dest('public/images'));
+        .pipe(cache(imagemin())
+        .pipe(gulp.dest('public/images')));
 });
 
 gulp.task('js', function () {
@@ -116,10 +115,11 @@ gulp.task('LiveServe', function(done) {
   });
 });
 
-gulp.task('watch', ['browser-sync', 'styles', 'ng', 'js'], function () {
+gulp.task('watch', ['browser-sync', 'styles', 'ng', 'js','images'], function () {
     gulp.watch('public_development/scss/**/*.scss', ['styles']);
     gulp.watch('public_development/css/**/*.css', ['styles']);
     gulp.watch('public_development/ng/**/*', ['ng']);
+    gulp.watch('public_development/images/**/*', ['images']);
     gulp.watch('public_development/**/*.html', ['views']);
     gulp.watch('public_development/js/lib/*.js', ['jquery-concat']);
     gulp.watch('public_development/**/*', browser_Sync.reload);
@@ -163,6 +163,14 @@ gulp.task('clean:destination', function () {
     ]);
 });
 
+// gulpfile.js
+gulp.task('test', function (done) {
+  return new karmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
 gulp.task('build', function (callback) {
     console.log('Building project...');
     runSequence('clean:destination', ['styles', 'js', 'ng','images','jquery-concat'],
@@ -178,7 +186,7 @@ gulp.task('clean-public', function () {
 });
 
 gulp.task('default', function (callback) {
-    runSequence(['styles', 'js', 'ng', 'watch', 'browser-sync','images','jquery-concat','LiveServe'],
+    runSequence(['styles', 'js', 'ng', 'watch','browser-sync','images','jquery-concat','LiveServe','test'],
         callback
     );
 });

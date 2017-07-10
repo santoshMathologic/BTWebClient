@@ -33,8 +33,8 @@ module.exports = function (config) {
       './public_development/js/timeCal.service.spec.js',
 
       /// login Testing 
-      './public_development/ng/controller/login.controller.js',                                 // our Users factory
-      './public_development/ng/controller/login.controller.spec.js',
+       './public_development/ng/controller/login.controller.js',                                 // our Users factory
+       './public_development/ng/controller/login.controller.spec.js',
 
     ],
 
