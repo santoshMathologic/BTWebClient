@@ -16,6 +16,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "angular-jsdoc": "^1.5.0",
     "browser-sync": "^2.18.12",
     "del": "^3.0.0",
     "ejs": "^2.5.6",
@@ -38,8 +39,12 @@
     "gulp-uglify": "^3.0.0",
     "gulp-useref": "^3.1.2",
     "gulp-util": "^3.0.8",
+    "jasmine-core": "^2.6.4",
     "jsdoc": "^3.4.3",
     "jshint-stylish": "^2.2.1",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
     "live-reload": "^1.1.0",
     "livereload": "^0.6.2",
     "merge-stream": "^1.0.1",
