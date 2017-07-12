@@ -1,35 +1,28 @@
+" use strict";
+
 describe('login', function () {
-		
-	beforeEach(angular.mock.module('BTApp'));
+
+	beforeEach(module('BTApp'));
 
 	var $controller;
-	var authFactory;
 
-	beforeEach(angular.mock.inject(function(_$controller_){
-	  $controller = _$controller_;
+
+	beforeEach(inject(function (_$controller_) {
+		$controller = _$controller_;
 	}));
 
-	
-    
-    
-    beforeEach(inject(function (_authFactory_) {
-        authFactory = _authFactory_;
-    }));
-
-    it('should exist', function () {
-        expect(authFactory).toBeDefined();
-    });
-
-
-	describe('test for username and password are correct', function () {
-		it('username should equal test and password should equal test', function () {
-			var $scope = {};
-			var controller = $controller('loginCtrl', { $scope: $scope });
-			$scope.username = test;
-			$scope.password = test;
-			$scope.login();
-			//expect($scope.z).toBe(3);
-		});	
+	describe('factory: AuthFactory', function () {
+		var factory = null;
+		beforeEach(inject(function (authFactory) {
+			factory = authFactory;
+		}));
+		it('Should define methods', function () {
+			expect(factory.dologin("test","test")).toBeDefined();
+			
+		});
 	});
+
+
+
 
 });
