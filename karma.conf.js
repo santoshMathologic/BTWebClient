@@ -29,17 +29,25 @@ module.exports = function (config) {
       "./public_development/bower_components/angular-messages/angular-messages.min.js",
 
       './public_development/ng/app.config.js',                                                  // our angular app
+
+      // timeCalculator Testing 
       './public_development/js/timeCal.service.js',                                 // our Users factory
       './public_development/js/timeCal.service.spec.js',
 
-      /// login Testing 
-     //  './public_development/ng/controller/login.controller.js',                                 // our Users factory
-     //  './public_development/ng/controller/login.controller.spec.js',
+
+        // login Testing 
+        //  './public_development/ng/controller/login.controller.js',                                 // our Users factory
+       //  './public_development/ng/controller/login.controller.spec.js',
 
             // StRatio
 
-      './public_development/ng/customDirective/stRatio.directive.js',
-      './public_development/ng/customDirective/stRatio.spec.js'
+            // './public_development/ng/customDirective/stRatio.directive.js',
+           // './public_development/ng/customDirective/stRatio.spec.js'
+
+            // headerMenu.directive.js
+
+             './public_development/ng/customDirective/headerMenu.directive.js',
+           './public_development/ng/customDirective/headerMenu.spec.js'
 
     ],
 
