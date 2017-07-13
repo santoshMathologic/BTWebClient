@@ -17,6 +17,8 @@ describe('headerMenu:directive', function () {
     it('should return an unordered list', function () {
         var ul = element.find('ul');
         expect(ul).toBeDefined();
+        var ctrl = element.controller('headerMenu');
+spyOn(ctrl, 'getIndex').and.callThrough();
     });
 
 });

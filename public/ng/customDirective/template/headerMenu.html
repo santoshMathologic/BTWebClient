@@ -1,9 +1,10 @@
 
 
-<ul>
-    <li ng-show="vm.hideItem">Home</li>
-    <li ng-show="vm.hideItem">Products</li>
-    <li ng-show="!vm.hideItem">Cart</li>
-    <li ng-show="vm.hideItem">Contact Us</li>
-</ul>
-
+<div class="col-md-3">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="active" ng-show="vm.hideItem"><a href="#">Home</a></li>
+    <li ng-show="vm.hideItem"><a href="#">Product</a></li>
+    <li ng-show="!vm.hideItem"><a href="#">Cart</a></li>
+    <li ng-show="vm.hideItem"><a href="#">Contact Us</a></li>
+  </ul>
+</div>

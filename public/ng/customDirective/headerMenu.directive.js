@@ -24,6 +24,7 @@ app.directive("headerMenu", ['$compile', function ($compile) {
             }
             function getIndex() {
                 index = 3;
+                console.log("DASDASD");
                 getData(index);
             }
 
