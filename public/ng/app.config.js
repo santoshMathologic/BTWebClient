@@ -78,7 +78,8 @@ var appConfig  = (function () {
                                     'ng/directive/home/home.directive.js',
                                     'ng/controller/home.controller.js',
                                     'ng/factory/authFactory.factory.js',
-                                    'js/timeCal.service.min.js'
+                                    'js/timeCal.service.min.js',
+                                    'ng/customDirective/headerMenu.directive.js'
                                         // 'ng/service/StoreService.service.js'
                                    
                                 ]

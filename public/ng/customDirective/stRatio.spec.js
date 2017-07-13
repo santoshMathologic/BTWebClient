@@ -1,18 +1,17 @@
 describe("directive:stRation", function () {
 
-    var scope,element;
-        beforeEach(module('BTApp'));
+    var scope, element;
+    beforeEach(angular.mock.module('BTApp'));
 
-    beforeEach(inject(function ($rootScope, $compile) {
+    it('should get called on a click', inject(function ($rootScope, $compile) {
+        element = $compile('<div ng-click="clicked = true"></div>')($rootScope);
+        $rootScope.$digest();
+        expect($rootScope.clicked).toBeFalsy();
 
-        element = angular.element('<st-ratio></st-ratio>');
-
-        scope = $rootScope;
-        $compile(elm)(scope);
-        scope.$digest();
-
-
+        browserTrigger(element, 'click');
+        expect($rootScope.clicked).toEqual(true);
     }));
+
 
 
 });
