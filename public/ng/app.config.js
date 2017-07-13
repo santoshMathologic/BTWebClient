@@ -158,6 +158,24 @@ var appConfig  = (function () {
 		                            });
 		                    	}
 		               		}
+		            }).state('home.dashboard.upload',{
+		                template: '<upload></upload>',
+		                url: '/upload',
+		                controller:"uploadCtrl",
+		                resolve: {
+		                    loadMyDirectives: function ($ocLazyLoad) {
+		                        return $ocLazyLoad.load(
+		                            {
+		                                name: 'BTApp',
+		                                files: [
+		                                    'ng/directive/dashboard/upload/upload.directive.js',
+		                                    'ng/controller/upload.controller.js',
+                                            
+		                                    
+		                                ]
+		                            });
+		                    	}
+		               		}
 		            });
             $httpProvider.interceptors.push('TokenInterceptor');
 
