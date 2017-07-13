@@ -11,18 +11,28 @@ app.directive("headerMenu", ['$compile', function ($compile) {
         replace: true,
         controllerAs: 'vm',
         transclude: true,
-        templateUrl: "ng/customDirective/headerMenu.html",
+        templateUrl: "ng/customDirective/template/headerMenu.html",
         link: function (scope, element, attrs, vm) {
-            
-             function getData(index){
-                 if(index){
-                     vm.hideItem = true;
-                 }else{
-                     var li = element.find("li");
-                 }
-             }
+
+            function getData(index) {
+                if (index) {
+                    vm.hideItem = true;
+                } else {
+                    var li = element.find("li");
+                    li.attr("context-driven", "");
+                }
+            }
+            function getIndex() {
+                index = 3;
+                getData(index);
+            }
+
+            getIndex();
 
         },
+         controller: function(){
+
+         },
 
     };
 }]);

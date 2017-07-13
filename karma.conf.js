@@ -46,7 +46,7 @@ module.exports = function (config) {
 
             // headerMenu.directive.js
 
-             './public_development/ng/customDirective/headerMenu.directive.js',
+            './public_development/ng/customDirective/headerMenu.directive.js',
            './public_development/ng/customDirective/headerMenu.spec.js'
 
     ],
