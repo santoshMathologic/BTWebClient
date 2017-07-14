@@ -52,7 +52,7 @@ var appConfig  = (function () {
 		    }
 		  };
 		});
-    app.config(['$ocLazyLoadProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', function ($ocLazyLoadProvider, $routeProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+    app.config(['$ocLazyLoadProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider','$locationProvider' ,'$httpProvider', function ($ocLazyLoadProvider, $routeProvider, $stateProvider, $urlRouterProvider,$locationProvider, $httpProvider) {
         $ocLazyLoadProvider.config({
             debug: false,
             events: true,
@@ -65,6 +65,8 @@ var appConfig  = (function () {
 
         $urlRouterProvider.otherwise('/home/dashboard');
         $httpProvider.defaults.withCredentials = true;
+        $locationProvider.html5Mode(false);
+
         $stateProvider
          .state('home', {
                 templateUrl: 'ng/directive/home/home.directive.html',
@@ -80,7 +82,8 @@ var appConfig  = (function () {
                                     'ng/controller/home.controller.js',
                                     'ng/factory/authFactory.factory.js',
                                     'js/timeCal.service.min.js',
-                                    'ng/customDirective/headerMenu.directive.js'
+                                    'ng/customDirective/headerMenu.directive.js',
+                                    'ng/customDirective/ng-custom-tab.js'
                                         // 'ng/service/StoreService.service.js'
                                    
                                 ]
