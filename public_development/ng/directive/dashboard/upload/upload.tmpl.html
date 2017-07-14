@@ -11,97 +11,65 @@
                 <i class="fa fa-file"></i> Upload
             </li>
         </ol>
+    </div>
 
 
-        <ul class="nav nav-tabs">
-				<li class="active"><a show-tab href="#home"> <i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-				<!--  added showTab directive to prevent redirective to dashboard -->
-				<li><a show-tab href="#trainDetail"><i class="fa fa-train" aria-hidden="true"></i> TrainDetail</a></li>
-				<!--  added showTab directive to prevent redirective to dashboard -->
-				<li><a show-tab href="#trainTimeTable"><i class="fa fa-subway" aria-hidden="true"></i> TrainTimeTable</a></li>
-				<li><a show-tab href="#stationDetails"><i class="fa fa-subway" aria-hidden="true"></i> Station</a></li>
-				<!--  added showTab directive to prevent redirective to dashboard -->
-			</ul>
-
-    <div class="tab-content">
-				<div id="home" class="tab-pane fade in active">
-					<h3>HOME</h3>
-
-					<h5 style="color: red">M</h5>
-					<p>athologic Technologies Private Limited is a Private
-						incorporated on 21 July 2014. It is classified as Non-govt company
-						and is registered at Registrar of Companies, Bangalore. Its
-						authorized share capital is Rs. 100,000 and its paid up capital is
-						Rs. 100,000.It is inolved in Software publishing, consultancy and
-						supply [Software publishing includes production, supply and
-						documentation of ready-made (non-customized) software, operating
-						systems software, business & other applications software, computer
-						games software for all platforms. Consultancy includes providing
-						the best solution in the form of custom software after analyzing
-						the user?s needs and problems. Custom software also includes
-						made-to-order software based on orders from specific users. Also,
-						included are writing of software of any kind following directives
-						of the users; software maintenance, web-page design]. Mathologic
-						Technologies Private Limited's Annual General Meeting (AGM) was
-						last held on 30 September 2016 and as per records from Ministry of
-						Corporate Affairs (MCA), its balance sheet was last filed on 31
-						March 2016. Directors of Mathologic Technologies Private Limited
-						are Manish Kumar and Roli Saraswat. Mathologic Technologies
-						Private Limited's Corporate Identification Number is (CIN)
-						U72200KA2014PTC075437 and its registration number is 75437.Its
-						Email address is manish@mathologic.com and its registered address
-						is D3-406, L & T South City, Arekere Mico Layout, Bannerghatta
-						Road Bangalore Bangalore KA 560076 IN , - , . Current status of
-						Mathologic Technologies Private Limited is - Active.</p>
-
-				</div>
-				<div id="trainDetail" class="tab-pane fade">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+            <div class="col-lg-8">
+                  <form name="uploadForm">
 
 
-					<div class="col-lg-12">
-						<form name="uploadForm">
+                    <div class="btn btn-md btn-success" ngf-select ng-model="trainTimeTableFile" name="trainTimeTableFile" ngf-accept="'csv/*'" style="width: 100px" ngf-max-size="20MB"
+                        ngf-min-height="50" ngf-resize="{width: 100, height: 100}">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add files..
+                    </div>
 
-							<h1 class="page-header">Train Details</h1>
-							<!--  Train details -->
-							<div class="col-md-4">
-								<div class="btn btn-md btn-success" ngf-select ng-model="file"
-									name="file" ngf-accept="'csv/*'" style="width: 250px"
-									ngf-max-size="20MB" ngf-min-height="50"
-									ngf-resize="{width: 100, height: 100}">
-									<i class="fa fa-plus" aria-hidden="true"></i> Browse
-								</div>
-							</div>
-							<div class="col-md-4">
-								<button type="submit" class="btn btn-primary"
-									ng-disabled="bUpload" ng-click="trainDetails()">
-									<i class="fa fa-play" aria-hidden="true"></i> Upload
+
+                    <button type="submit" class="btn btn-primary" ng-click="trainTimeTableDetails()">
+									<i class="fa fa-upload" aria-hidden="true"></i> Start Upload
 								</button>
 
 
-								<button type="submit" class="btn btn-danger"
-									ng-disabled="bUpload" ng-click="cancletrainDetails()">
-									<i class="fa fa-ban fa-fw fa-1x" aria-hidden="true"></i> Cancle
+                    <button type="submit" class="btn btn-danger" ng-click="cancleUpload()">
+									<i class="fa fa-ban fa-fw fa-1x" aria-hidden="true"></i> Cancle Upload
 								</button>
 
-							</div>
 
 
-                            <br />
-                            <br />
-							   <br />
-                            <br />
-                               <br />
-                            <br />
-							
-							
+                  </form>
+                
+            </div>
+            </div>
 
-							<table class="table table-striped table-condensed">
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{progress}}"
+                            aria-valuemin="0" aria-valuemax="100" ng-style="{ 'width' : progress + '%'}">
+                            {{progress}}% Complete (success)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-striped table-condensed">
 
 
 								<thead>
 									<tr>
 										<th>Sl No</th>
-										<th>File Name</th>
+                                        <th>Name</th>
+                                        <th>Size</th>
 										<th>Status</th>
 										<th>Extension</th>
 										<th>Uploader</th>
@@ -113,14 +81,15 @@
 								<tbody>
 									<tr ng-repeat="tdl in trainDetailsList">
 										<td>{{$index+1}}</td>
-										<td>{{tdl.fileName}}</td>
-										<td>{{tdl.message}}</td>
+                                        <td>{{tdl.fileName}}</td>
+                                        <td>{{tdl.size}}</td>
+										<td>{{tdl.status}}</td>
 										<td>{{tdl.fileExtension}}</td>
 										<td>{{tdl.uploader}}</td>
 										<td>{{tdl.uploadDate | date : "fullDate" }}</td>
 										<td>
 											<button class="btn btn-danger btn-xs fa fa-trash"
-												ng-click="deleteTrainDetails(file)"></button>
+												ng-click="deleteTrainDetails(tdl)"></button>
 											<button class="btn btn-warning btn-xs fa fa-edit"></button>
 
 										</td>
@@ -128,171 +97,14 @@
 									</tr>
 								</tbody>
 							</table>
-						</form>
-
-					</div>
-
+                </div>
+            </div>
 
 
 
-				</div>
-				<div id="trainTimeTable" class="tab-pane fade">
-					<h1 class="page-header">Train Time Table</h1>
-					<form name="trainTimeTableForm">
-
-						<div class="col-md-4">
-							<div class="btn btn-md btn-success" ngf-select
-								style="width: 250px" ng-model="trainTimeTablefile"
-								name="trainTimeTablefile" ngf-accept="'csv/*'"
-								ngf-max-size="20MB" ngf-min-height="50" ngf-min-width="400"
-								ngf-resize="{width: 1000, height: 100}">
-								<i class="fa fa-plus" aria-hidden="true"></i> Browse
-							</div>
-
-						</div>
-
-						<div class="col-md-4">
-							<button type="submit" class="btn btn-primary"
-								ng-disabled="bUpload" ng-click="trainTimeTableDetails()">
-								<i class="fa fa-play" aria-hidden="true"></i> Upload
-							</button>
-
-
-							<button type="submit" class="btn btn-danger"
-								ng-disabled="bUpload" ng-click="cancletrainTimeTableDetails()">
-								<i class="fa fa-ban fa-fw fa-1x" aria-hidden="true"></i> Cancle
-							</button>
-
-						</div>
-
-						<br />
-						<ng-porgress-bar cur-val='30' max-val='100' colour="y"></ng-porgress-bar>
-
-						<table class="table table-striped table-condensed StandardTable">
-
-
-							<thead>
-								<tr>
-									<th>Sl No</th>
-									<th>File Name</th>
-									<th>Status</th>
-									<th>Type</th>
-									<th>Uploader</th>
-									<th>Size</th>
-									<th>Date</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<tr ng-repeat="tttl in trainTimeTableLists">
-										<td>{{$index+1}}</td>
-										<td>{{tttl.fileName}}</td>
-										<td>{{tttl.message}}</td>
-										<td>{{tttl.fileExtension}}</td>
-										<td>{{tttl.uploader}}</td>
-										<td>{{tttl.fSize}}</td>
-										<td>{{tttl.uploadDate | date : "fullDate" }}</td>
-									<td>
-										<button class="btn btn-danger btn-xs fa fa-trash"
-											ng-click="deleteTrainDetails(file)"></button>
-										<button class="btn btn-warning btn-xs fa fa-edit"></button>
-
-									</td>
-
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>
-				
-				
-				<div id="stationDetails" class="tab-pane fade">
-					<h1 class="page-header">Station</h1>
-					<form name="stationDetailForm">
-
-						<div class="col-md-4">
-							<div class="btn btn-md btn-success" ngf-select
-								style="width: 250px" ng-model="trainTimeTablefile"
-								name="trainTimeTablefile" ngf-accept="'csv/*'"
-								ngf-max-size="20MB" ngf-min-height="50" ngf-min-width="400"
-								ngf-resize="{width: 1000, height: 100}">
-								<i class="fa fa-plus" aria-hidden="true"></i> Browse
-							</div>
-
-						</div>
-
-						<div class="col-md-4">
-							<button type="submit" class="btn btn-primary"
-								ng-disabled="bUpload" ng-click="trainTimeTableDetails()">
-								<i class="fa fa-play" aria-hidden="true"></i> Upload
-							</button>
-
-
-							<button type="submit" class="btn btn-danger"
-								ng-disabled="bUpload" ng-click="cancletrainTimeTableDetails()">
-								<i class="fa fa-ban fa-fw fa-1x" aria-hidden="true"></i> Cancle
-							</button>
-
-						</div>
-
-						<br />
-						<ng-porgress-bar cur-val='30' max-val='100' colour="y"></ng-porgress-bar>
-
-						<table class="table table-striped table-condensed StandardTable">
-
-
-							<thead>
-								<tr>
-									<th>Sl No</th>
-									<th>File Name</th>
-									<th>Status</th>
-									<th>Type</th>
-									<th>Uploader</th>
-									<th>Size</th>
-									<th>Date</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								<tr ng-repeat="tttl in trainTimeTableLists">
-										<td>{{$index+1}}</td>
-										<td>{{tttl.fileName}}</td>
-										<td>{{tttl.message}}</td>
-										<td>{{tttl.fileExtension}}</td>
-										<td>{{tttl.uploader}}</td>
-										<td>{{tttl.fSize}}</td>
-										<td>{{tttl.uploadDate | date : "fullDate" }}</td>
-									<td>
-										<button class="btn btn-danger btn-xs fa fa-trash"
-											ng-click="deleteTrainDetails(file)"></button>
-										<button class="btn btn-warning btn-xs fa fa-edit"></button>
-
-									</td>
-
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>
-				
-				
-			</div>
-
-
-
-
-
-
+        </div>
 
     </div>
-
-
-
-
-
-
 
 
 

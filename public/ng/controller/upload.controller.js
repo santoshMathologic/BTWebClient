@@ -7,16 +7,25 @@ var app = angular.module("BTApp");
 app.controller("uploadCtrl",function(Upload,$scope){
 
 
-      $scope.progressPercentage = 0;
+    $scope.progressPercentage = 0;
+    $scope.trainTimeTableDetails = function(){
 
-    $scope.Upload = function () {
-        if ($scope.uploadForm.file.$valid && $scope.file) {
-            Upload.upload({
-                url: '/api/v1/uploads',
-                data: { file: $scope.file }
+        if ($scope.trainTimeTableForm.trainTimeTableFile.$valid && $scope.trainTimeTableFile) {
+
+            
+
+
+               
+        }
+
+
+         Upload.upload({
+                url: "http://localhost:4000/api/v2/uploads/timetable",
+                data: { file: $scope.trainTimeTableFile}
             }).then(function successResponse(successResp) {
                 console.log(successResp);
-                $scope.addToTrainDetailsTable($scope.file);
+                
+                
             }, function errorResponse(errorResp) {
                 console.log(errorResp);
             }, function (evt) {
@@ -26,28 +35,8 @@ app.controller("uploadCtrl",function(Upload,$scope){
                 //console.log('progress: ' + $scope.progressPercentage + '% ' + evt.config.data.file.name);
             });
 
-
-
-
-        }
-
+        
     };
-
-    $scope.addToTrainDetailsTable = function (file) {
-
-        console.log(file);
-
-        $scope.trainDetailsList = [{
-            fileName: file.name,
-            size:file.size,
-            status: "successfully Uploaded",
-            fileExtension: "csv",
-            uploader: "David",
-            uploadDate: new Date()
-        }];
-
-    };
-
 
 
 
