@@ -28,7 +28,8 @@ var appConfig  = (function () {
         'oc.lazyLoad',
         'ui.router',
         'ngCookies',
-        'angular-jwt'
+        'angular-jwt',
+        'ngFileUpload'
     ]);
     app.factory('TokenInterceptor', function($q, $window,$location,$state) {
 	  return {

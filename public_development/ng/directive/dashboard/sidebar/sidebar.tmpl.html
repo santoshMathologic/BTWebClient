@@ -1,37 +1,115 @@
-<div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav side-nav" ng-hide="hideSideBar">
-        <li class="active">
-            <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-        </li>
-        <li>
-            <a ui-sref="home.dashboard.blank"><i class="fa fa-fw fa-bar-chart-o"></i> Blank</a>
-        </li>
-        <li>
-            <a ui-sref="home.dashboard.blank"><i class="fa fa-fw fa-table"></i> Tables</a>
-        </li>
-        <li>
-            <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-        </li>
-        <li>
-            <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-        </li>
-        <li>
-            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-        </li>
-        <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="demo" class="collapse">
-                <li>
-                    <a href="#">Dropdown Item</a>
-                </li>
-                <li>
-                    <a href="#">Dropdown Item</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-        </li>
-       
-    </ul>
+<div class="navbar-default sidebar" id="toggleSideBar" sidebar-directive="sideBarState " role="navigation">
+    <a id="navigation-toggle" style="text-decoration: none; margin-left: 234px;" ng-class="{ 'fa fa-chevron-right': state, 'fa fa-chevron-left': !state}"
+        ng-click="toggleState()"></a>
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav in" id="side-menu">
+
+
+            <li ui-sref-active="active"><a ui-sref="dashboard.home"><i
+					class="fa fa-dashboard fa-fw"></i> Dash board</a></li>
+            <li ui-sref-active="active"><a ui-sref="dashboard.User"><i
+					class="fa fa-user fa-fw"></i> Users<span></span></a></li>
+
+                    <li ui-sref-active="active"><a ui-sref="home.dashboard.blank"><i
+					class="fa fa-user fa-fw"></i> Blank<span></span></a></li>
+
+                    
+            <li ui-sref-active="active"><a ui-sref="dashboard.userPlan"><i
+					class="fa fa-paper-plane fa-fw"></i> UserPlan<span></span></a></li>
+
+            <li ui-sref-active="active"><a ui-sref="dashboard.role"><i
+					class="fa fa-arrows fa-fw"></i> Role<span></span></a></li>
+
+         
+
+
+            <li ui-sref-active="active"><a ui-sref="dashboard.station"><i
+					class="fa fa-circle-o fa-fw"></i>Station<span></span></a></li>
+
+            <li ui-sref-active="active"><a ui-sref="dashboard.division"><i
+					class="fa fa-window-restore fa-fw fa-1x"></i>Division<span></span></a></li>
+
+
+            <li ui-sref-active="active"><a ui-sref="dashboard.crewType"><i
+					class="fa fa-university fa-fw fa-1x"></i>CrewType<span></span></a></li>
+
+            <li ui-sref-active="active"><a ui-sref="dashboard.train" ng-click="toggleState()"><i
+					class="fa fa-train fa-fw"></i>Train<span></span></a></li>
+
+            <li ui-sref-active="active"><a ui-sref="dashboard.trainStation" ng-click="toggleState()"><i
+					class="fa fa-train fa-fw"></i>Train Time Table`<span></span></a></li>
+
+            <!-- Dropdown -->
+            <li ui-sref-active="active" ng-click="changeClass()"><a href="#collapse-dropdown" data-toggle="collapse" aria-controls="collapse-dropdown"> <i
+					class="fa fa-hdd-o fa-fw"></i>DrivingSection<span class="fa arrow"></span></a>
+
+                <!-- collapse-dropdown -->
+                <ul class="collapse collapseable" id="collapse-dropdown" style="list-style: none; cursor: pointer;font-size:12px;">
+                    <li style="padding: 8px;"><a ui-sref="dashboard.listDrivingSection"> <i class="fa fa-list fa-fw"></i>List All Driving Sections
+					</a></li>
+
+                    <li style="padding: 8px;"><a ui-sref="dashboard.createDrivingSection"> <i class="fa fa-plus fa-fw fa-1x"></i>Create Driving Sections
+					</a></li>
+
+                    <li style="padding: 8px;"><a ui-sref="dashboard.drivingSectionChart"> <i class="fa fa-circle-o fa-fw"></i>Create Driving Section Chart
+					</a></li>
+                </ul>
+            </li>
+
+            <!-- DrivingDuty Dropdown -->
+            <li ui-sref-active="active" ng-click="changeClass()"><a href="#collapse-drivingduty" data-toggle="collapse" aria-controls="collapse-dropdown"> <i
+					class="fa fa-random fa-fw"></i>DrivingDuty<span class="fa arrow"></span></a>
+
+                <!-- collapse-dropdown -->
+                <ul class="collapse collapseable" id="collapse-drivingduty" style="list-style: none; cursor: pointer;font-size:12px;">
+                    <li style="padding: 8px;"><a ui-sref="dashboard.listAllDrivingDuties"> <i class="fa fa-list fa-fw"></i>List All Driving Duties
+					</a></li>
+
+                    <li style="padding: 8px;"><a ui-sref="dashboard.createListAllDrivingDuties"> <i class="fa fa-plus fa-fw fa-1x"></i>Create Driving Duty
+					</a></li>
+
+                </ul>
+            </li>
+
+
+
+            <!-- RoundTrip Dropdown -->
+            <li ui-sref-active="active" ng-click="changeClass()"><a href="#collapse-roundTrip" data-toggle="collapse" aria-controls="collapse-dropdown"> <i
+					class="fa fa-bell-o fa-fw"></i>RoundTrip<span class="fa arrow"></span></a>
+
+                <!-- collapse-dropdown -->
+                <ul class="collapse collapseable" id="collapse-roundTrip" style="list-style: none; cursor: pointer;font-size:12px;">
+                    <li style="padding: 8px;"><a ui-sref="dashboard.listAllDrivingDuties"> <i class="fa fa-list fa-fw"></i>List All Driving Duties
+					</a></li>
+
+                    <li style="padding: 8px;"><a ui-sref="dashboard.createListAllDrivingDuties"> <i class="fa fa-plus fa-fw fa-1x"></i>Create Driving Duty
+					</a></li>
+
+                </ul>
+            </li>
+
+            <!-- crewLink Dropdown -->
+            <li ui-sref-active="active" ng-click="changeClass()"><a href="#collapse-roundTrip" data-toggle="collapse" aria-controls="collapse-dropdown"> <i
+					class="fa fa-certificate fa-fw fa-1x"></i>CrewLink<span class="fa arrow"></span></a>
+
+                <!-- collapse-dropdown -->
+                <ul class="collapse collapseable" id="collapse-roundTrip" style="list-style: none; cursor: pointer;font-size:12px;">
+                    <li style="padding: 8px;"><a ui-sref="dashboard.listAllDrivingDuties"> <i class="fa fa-list fa-fw"></i>List All Driving Duties
+					</a></li>
+
+                    <li style="padding: 8px;"><a ui-sref="dashboard.createListAllDrivingDuties"> <i class="fa fa-plus fa-fw fa-1x"></i>Create Driving Duty
+					</a></li>
+
+                </ul>
+            </li>
+
+
+
+        </ul>
+
+
+
+
+
+    </div>
 </div>

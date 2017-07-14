@@ -13,7 +13,7 @@
 
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    
+
     <link href="css/styles.min.css" rel="stylesheet">
     <link href="bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -33,14 +33,21 @@
     <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
 
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+
     <script src="ng/app.config.js"></script>
 
 
 </head>
 
-<body class="mainBody">
-    <div ng-app="BTApp" style="overflow-x:hidden">
-        <section ui-view class="main"></section>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-app="BTApp" style="overflow-x: hidden">
+                <section ui-view></section>
+            </div>
+        </div>
     </div>
 </body>
 
