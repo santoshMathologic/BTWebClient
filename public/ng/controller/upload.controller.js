@@ -1,46 +1,35 @@
 
 ' use strict';
 
-(function(){
+(function () {
 
-var app = angular.module("BTApp");
-app.controller("uploadCtrl",function(Upload,$scope){
-
-
-    $scope.progressPercentage = 0;
-    $scope.trainTimeTableDetails = function(){
-
-        if ($scope.trainTimeTableForm.trainTimeTableFile.$valid && $scope.trainTimeTableFile) {
-
-            
+    var app = angular.module("BTApp");
+    app.controller("uploadCtrl", function (Upload, $scope) {
 
 
-               
-        }
+        $scope.progressPercentage = 0;
+        $scope.trainTimeTableDetails = function () {
 
+            if ($scope.trainTimeTableForm.file.$valid && $scope.file) {
+                $scope.upload($scope.file);
+            }
+        };
 
-         Upload.upload({
+        $scope.upload = function (file) {
+            Upload.upload({
                 url: "http://localhost:4000/api/v2/uploads/timetable",
-                data: { file: $scope.trainTimeTableFile}
-            }).then(function successResponse(successResp) {
-                console.log(successResp);
-                
-                
-            }, function errorResponse(errorResp) {
-                console.log(errorResp);
+                data: { file: file }
+            }).then(function (resp) {
+                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
             }, function (evt) {
-                $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                $scope.progress = Math.round(evt.loaded * 100 / evt.total);
-                console.log("" + $scope.progressPercentage);
-                //console.log('progress: ' + $scope.progressPercentage + '% ' + evt.config.data.file.name);
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
-
-        
-    };
+        };
 
 
-
-    
-});
+    });
 
 })();

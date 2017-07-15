@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());                         // pull information from html in POST
 
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+//app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 //app.use('/', index);
 
@@ -80,20 +80,7 @@ function normalizePort(val) {
   return false;
 }
 
-app.all('/*', function (req, res, next) {
-  // CORS headers
-  res.header("Access-Control-Allow-Origin", req.headers.origin); // restrict it to the required domain
-  //res.header("Access-Control-Allow-Origin", '*'); // restrict it to the required domain
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Credentials', true);
-  // Set custom headers for CORS
-  res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key,Cookie');
-  if (req.method == 'OPTIONS') {
-    res.status(200).end();
-  } else {
-    next();
-  }
-});
+
 
 
 module.exports = app;

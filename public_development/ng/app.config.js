@@ -30,6 +30,7 @@ var appConfig  = (function () {
         'ngCookies',
         'angular-jwt',
         'ngFileUpload'
+        
     ]);
     app.factory('TokenInterceptor', function($q, $window,$location,$state) {
 	  return {
