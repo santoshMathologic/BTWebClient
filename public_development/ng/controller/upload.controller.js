@@ -18,8 +18,8 @@
         $scope.upload = function (file) {
             Upload.upload({
                 url: "http://localhost:3000/api/v2/uploads/timetable",
-                headers: { 'Content-Type': undefined},
-                data: { file: file }
+                data: { file: file}
+                 
             }).then(function (resp) {
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
             }, function (resp) {

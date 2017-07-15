@@ -18,6 +18,7 @@
   "devDependencies": {
     "angular-jsdoc": "^1.5.0",
     "basic-auth": "^1.1.0",
+    "body-parser": "^1.15.2",
     "browser-sync": "^2.18.12",
     "cors": "^2.8.3",
     "csv-parse": "^1.2.0",

@@ -3,7 +3,7 @@
         protocol: 'http',
         server: 'localhost',
         port: 3000,
-        baseUrl: '/api/v1',
+        baseUrl: '/api/v2',
     };
 
     var apiUrl = api.protocol + "://" + api.server + ":" + api.port + api.baseUrl;
