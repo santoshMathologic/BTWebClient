@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var index = require('./routes/index');
+var db = require("./database/db");
+
 var router = express.Router();
 
 
@@ -22,13 +24,41 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));         // set the static files location
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());                         // pull information from html in POST
+
+app.use(logger('dev'));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('superSecret', config.secret); // secret variable
+
+
+
+app.all('/*', function(req, res, next) {
+  // CORS headers
+  res.header("Access-Control-Allow-Origin", req.headers.origin); // restrict it to the required domain
+  //res.header("Access-Control-Allow-Origin", '*'); // restrict it to the required domain
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+  res.header('Access-Control-Allow-Credentials', true);
+  // Set custom headers for CORS
+  res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key,Cookie');
+  if (req.method == 'OPTIONS') {
+    res.status(200).end();
+  } else {
+    next();
+  }
+});
+
+app.use(cors());
+
+//app.all('/api/v2/*',validation);  // Validation all routes before user
+app.all('/api/v2/*', [require('./middlewares/validationMiddleware')]);
+              
 
 //app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
-//app.use('/', index);
+
+app.use('/', index);
 
 
 
