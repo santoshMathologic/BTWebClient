@@ -2,7 +2,7 @@
     var api = {
         protocol: 'http',
         server: 'localhost',
-        port: 3000,
+        port: 4000,
         baseUrl: '/api/v2',
     };
 
