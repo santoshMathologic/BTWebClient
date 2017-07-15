@@ -31,8 +31,8 @@ app.factory('authFactory', function ($state, $http, $base64, $location, $window,
                  method:'GET',
                  url:apiLoginUrl,
                  headers:{
-                      'Authorization':'Basic '+ authEncr,
-                      'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+                      'Authorization':'Basic '+ authEncr
+                     
 
                  }
              });
