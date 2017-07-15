@@ -7,9 +7,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var favicon = require('serve-favicon');
 var index = require('./routes/index');
-var config = require('./config/config'); // get our config file
-var validation = require('./middlewares/validationMiddleware'); // get our config file
-var db = require("./database/db");
+
 var cors = require("cors");
 
 var router = express.Router();
@@ -56,18 +54,6 @@ app.all('/*', function(req, res, next) {
   }
 });
 
-
-
-
-
-
-
-//app.all('/api/v2/*',validation);  // Validation all routes before user
-
-app.all('/api/v2/*', [require('./middlewares/validationMiddleware')]);
-              
-
-//app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 
 app.use('/', index);
