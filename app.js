@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var index = require('./routes/index');
+var config = require('./config/config'); // get our config file
+var validation = require('./middlewares/validationMiddleware'); // get our config file
 var db = require("./database/db");
 
 var router = express.Router();
