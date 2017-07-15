@@ -16,7 +16,7 @@ angular.module('BTApp')
 
                     $http({
                         method: 'GET',
-                        url: "http://localhost:4000/logout"
+                        url: "http://localhost:3000/logout"
                     }).then(function (successresponse) {
                        $state.go('home.login', {}, { reload: true });
                     }, function (errorresponse) {

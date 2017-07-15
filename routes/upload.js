@@ -1,9 +1,17 @@
 
 
 var upload = {
-    parseUploadFile: function (req, res, next) {
+    parseUploadFile: function (req, res) {
 
         console.log(req);
+
+
+        return res.json({
+            'message':'Uploaded Successfully',
+            'status':true
+
+        });
+        
 
     }
 };
