@@ -186,7 +186,7 @@ gulp.task('clean-public', function () {
 });
 
 gulp.task('default', function (callback) {
-    runSequence(['styles', 'js', 'ng', 'watch','browser-sync','images','jquery-concat','LiveServe','test'],
+    runSequence(['styles', 'js', 'ng', 'watch','browser-sync','images','jquery-concat','LiveServe'],
         callback
     );
 });
