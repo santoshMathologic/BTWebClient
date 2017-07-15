@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var config = require('./config/config'); // get our config file
 var validation = require('./middlewares/validationMiddleware'); // get our config file
 var db = require("./database/db");
+var cors = require("cors");
 
 var router = express.Router();
 

@@ -18,7 +18,7 @@ var uploadDest = Multer({
 
 
 router.get('/login',login.userLogin);
-//router.post('/registeration', reg.registerUser);
+router.post('/registeration', reg.registerUser);
 
 
 module.exports = router;

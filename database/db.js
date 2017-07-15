@@ -9,7 +9,7 @@ var options = {
   pass: ''
 };
 
-mongoose.connect('mongodb://127.0.0.1/bt',options, function(error) {
+mongoose.connect('mongodb://127.0.0.1/bt',{ useMongoClient: true }, function(error) {
     if (error) {
         console.log('Cant connect to db', error);
     } else {
